@@ -2,7 +2,7 @@ steps:
   #  deploy workflow
   - name: 'gcr.io/cloud-builders/gcloud'
     id: "workflow"
-    dir: '/workspace/$TRIGGER_NAME'
+    dir: '/workspace/$trigger-1'
     entrypoint: 'bash'
     args:
       - '-c'
@@ -10,7 +10,7 @@ steps:
         set -e  
         echo ${pwd}
         
-        cd $TRIGGER_NAME
+        cd $trigger-1
       
         echo "CBL starts"   
       
@@ -26,16 +26,16 @@ steps:
       
         workFlowName=$(cat "$destFile" | grep 'workFlowName' | awk '{print $2}')
       
-        export workFlowName="$workFlowName"
+        export workFlowName="$workFlow123"
       
         echo $workFlowName           		
       
         echo "Working Directory: $(pwd)"
       
-        gcloud workflows deploy "$workFlowName" --source="$source" --service-account=${_SERVICE_ACCOUNT} --project="$PROJECT_ID" 
+        gcloud workflows deploy "$workFlow123" --source="$cloudbuild.new.yaml" --service-account=${_service-account123@gcp-practise-28.iam.gserviceaccount.com} --project="$gcp-practise-28" 
 
 substitutions:
-    _SERVICE_ACCOUNT  : 'sa-pipeline@$PROJECT_ID.iam.gserviceaccount.com'         
+    _SERVICE_ACCOUNT  : 'sa-pipeline@$gcp-practise-28.iam.gserviceaccount.com'         
 
 serviceAccount: 'projects/$PROJECT_ID/serviceAccounts/sa-pipeline@$PROJECT_ID.iam.gserviceaccount.com'
 logsBucket: ${_BUCKETNAME_VALUE}
