@@ -1,0 +1,5 @@
+steps:
+  -name: 'bash'
+   id: hello
+   args: ['echo', hello world']
+   
